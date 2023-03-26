@@ -15,11 +15,11 @@ exports.handler = async function(event) {
     case event.httpMethod === 'GET' && event.path === healthPath:
       response = buildResponse(200);
       break;
-    case event.httpMethod === 'GET' && event.path === productPath:
-      response = await getProduct(event.queryStringParameters.productId);
-      break;
     case event.httpMethod === 'GET' && event.path === productsPath:
       response = await getProducts();
+      break;
+    case event.httpMethod === 'GET' && event.path === productPath:
+      response = await getProduct(event.queryStringParameters.productId);
       break;
     case event.httpMethod === 'POST' && event.path === productPath:
       response = await saveProduct(JSON.parse(event.body));
